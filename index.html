@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Quiz</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Sansation', sans-serif;
+      background: #f0f0f0;
+    }
+
+    .container {
+      position: relative;
+      width: 430px;
+      height: 932px;
+      margin: 20px auto;
+      background: linear-gradient(0.25deg, #FFFFFF 57.33%, #FFFFFF 101.39%);
+      border: 3px solid rgba(153, 113, 113, 0.5);
+      border-radius: 65px;
+      overflow: hidden;
+    }
+
+    .bg-decor {
+      position: absolute;
+      width: 246px;
+      height: 177px;
+      background: #3A9D41;
+      z-index: 0;
+      border-radius: 50px;
+    }
+    .bg2 { left: 220px; top: 843px; background: #217144;}
+    .bg3 { width: 142px; height: 165px; background: #65C86B; left: 336px; top: 778px; }
+    .bg4 { width: 143px; height: 105px; background: #217144;left: 333px; top: 863px; }
+    .bg5 { width: 154px; height: 107px;  background: #65C86B; left: 20px; top: 130px;}
+    .bg6 { width: 101px; height: 152px; background: #3A9D41; left: -44px; top: 150px; }
+    .hello{position: absolute; width: 430px;height: 153px;left: 0px;top: 0px;background: #38825B;}
+    }
+
+    .quiz-title {
+      position: absolute;
+      width: 310px;
+      height: 46px;
+      left: 42px;
+      top: 70px;
+      font-family: 'Saira SemiCondensed', sans-serif;
+      font-weight: 600;
+      font-size: 36px;
+      color: #FFFFFF;
+      text-align: center;
+      z-index: 1;
+    }
+    .icon {
+      position: absolute;
+      width: 99px;
+      height: 99px;
+      left: 293px;
+      top: 30px;
+      background: url('book-52.png') no-repeat;
+      background-size: contain;
+    }
+
+    .question {
+      position: absolute;
+      width: 380px;
+      left: 42px;
+      top: 264px;
+      font-weight: 700;
+      font-size: 26px;
+      color: #000;
+      z-index: 1;
+    }
+
+    .option {
+      position: absolute;
+      width: 316px;
+      height: 70px;
+      background: #FFFFFF;
+      border: 4px solid #F8F8F8;
+      border-radius: 19px;
+      text-align: center;
+      line-height: 70px;
+      font-weight: 700;
+      font-size: 30px;
+      color: #605D5D;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      left: 58px;
+      z-index: 1;
+    }
+
+    .option:hover {
+      background: #D6EFFF;
+      border-color: #A9CBEB;
+    }
+
+    .option#option-a { top: 390px; }
+    .option#option-b { top: 498px; }
+    .option#option-c { top: 621px; }
+
+    .correct-answer {
+      background-color: #65C86B;
+      border-color: #4E8A3D;
+      color: #FFFFFF;
+    }
+
+    .incorrect-answer {
+      background-color: #F8D7DA;
+      border-color: #F5C6CB;
+      color: #721C24;
+    }
+
+    .result {
+      position: absolute;
+      top: 710px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-weight: 700;
+      font-size: 24px;
+      z-index: 1;
+    }
+
+    .correct-result {
+      color: #4E8A3D;
+    }
+
+    .incorrect-result {
+      color: #721C24;
+    }
+
+    .image {
+      position: absolute;
+      width: 132px;
+      height: 122px;
+      background: url('c3b46ed9-54b9-4135-8e56-4a6b778ea49e-removebg-preview.png') no-repeat;
+      background-size: contain;
+      left: 30px;
+      top: 766px;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hello"></div>
+    <div class="bg-decor bg2"></div>
+    <div class="bg-decor bg3"></div>
+    <div class="bg-decor bg4"></div>
+    <div class="bg-decor bg5"></div>
+    <div class="bg-decor bg6"></div>
+
+    <div class="quiz-title">Quiz 01</div>
+    <div class="icon"></div>
+    <div class="question">Which part of the cell contains the genetic material (DNA)?</div>
+
+    <div class="option" id="option-a">A. Nucleus</div>
+    <div class="option" id="option-b">B. Mitochondria</div>
+    <div class="option" id="option-c">C. Golgi Apparatus</div>
+
+    <div class="result" id="result"></div>
+    <div class="image"></div>
+  </div>
+
+  <script>
+    const options = document.querySelectorAll('.option');
+    const result = document.getElementById('result');
+    const correctAnswer = "A. Nucleus";
+
+    options.forEach(option => {
+      option.addEventListener('click', function () {
+        options.forEach(opt => opt.classList.remove('correct-answer', 'incorrect-answer'));
+
+        if (this.textContent.trim() === correctAnswer) {
+          this.classList.add('correct-answer');
+          result.textContent = "Correct!";
+          result.classList.add('correct-result');
+          result.classList.remove('incorrect-result');
+        } else {
+          this.classList.add('incorrect-answer');
+          result.textContent = "Incorrect! Try again.";
+          result.classList.add('incorrect-result');
+          result.classList.remove('correct-result');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
